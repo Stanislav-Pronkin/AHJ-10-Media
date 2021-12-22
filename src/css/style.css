@@ -1,0 +1,100 @@
+.container {
+    width: 700px;
+    margin-left: auto;
+    margin-right: auto;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+}
+
+.messages {
+    max-height: 700px;
+    overflow-y: auto;
+}
+
+.input-form {
+    display: flex;
+    border: solid 1px black;
+    padding: 5px;
+}
+
+.input-field {
+    border: none;
+    flex-grow: 1;
+    flex-shrink: 1;
+    flex-basis: auto;
+}
+
+.btn {
+    width: 30px;
+    height: 30px;
+    border-radius: 30px;
+    border-style: solid;
+    border-width: 1px;
+    border-color: black;
+    cursor: pointer;
+    background-size: cover;
+}
+
+.audio-rec {
+    background-image: url('../img/phone.png');
+}
+
+.camera-rec {
+    background-image: url('../img/video.png');
+}
+
+.stop-rec {
+    background-image: url('../img/wing.png');
+}
+
+.cancel-rec {
+    background-image: url('../img/cancel.png');
+}
+
+.message {
+    display: flex;
+    justify-content: space-between;
+    margin: 10px 0 10px 0;
+    padding: 15px;
+    border: solid 1px black;
+    border-radius: 15px;
+}
+
+.modal {
+    position: absolute;
+    width: 500px;
+    padding: 15px;
+    background-color: white;
+    border: solid 1px black;
+    border-radius: 15px;
+    top: 200px;
+    left: calc(50% - 250px);
+}
+
+.modal-input {
+    width: 100%;
+}
+
+.modal-buttons {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.button {
+    padding: 15px;
+    border: solid 1px black;
+    border-radius: 15px;
+    margin: 5px 0 0 5px;
+}
+
+.video-preview {
+    position: absolute;
+    width: 500px;
+    top: 200px;
+    left: calc(50% - 250px);
+}
+
+.hidden {
+    display: none;
+}
