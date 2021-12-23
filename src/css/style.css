@@ -61,6 +61,10 @@
     border-radius: 15px;
 }
 
+.message-item {
+    width: 80%;
+}
+
 .modal {
     position: absolute;
     width: 500px;
@@ -86,6 +90,9 @@
     border: solid 1px black;
     border-radius: 15px;
     margin: 5px 0 0 5px;
+}
+video {
+    width: 80%;
 }
 
 .video-preview {

@@ -40,6 +40,7 @@ export default class Recorder {
       let timing = null;
 
       if (!window.MediaRecorder) {
+
         const msg = 'Please, give permission in browser to record sound';
         alert(msg);
         return;
