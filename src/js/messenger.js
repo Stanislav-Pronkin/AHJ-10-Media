@@ -27,7 +27,6 @@ export default class Messenger {
 
   async createMessage(text) {
     this.coordinates = await getGeoposition();
-    console.log(this.coordinates);
 
     if (this.coordinates === 'none') {
       const modalError = document.querySelector('.modal');
@@ -45,7 +44,6 @@ export default class Messenger {
           const valid = validateLocation(input.value);
 
           if (valid) {
-            console.log(input.value);
             this.coordinates = input.value;
             this.addMessage(text, this.coordinates);
             modal.parentNode.removeChild(modal);

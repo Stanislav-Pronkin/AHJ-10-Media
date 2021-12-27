@@ -1,16 +1,17 @@
 export default function getGeoposition() {
   let location = '';
+  
   if (navigator.geolocation) {
     return new Promise((resolve) => {
       navigator.geolocation.getCurrentPosition(
         (position) => {
           const { latitude, longitude } = position.coords;
+
           location = `${latitude}, ${longitude}`;
-          console.log(location);
           resolve(location);
         }, (error) => {
-          console.log(error);
           const msg = 'none';
+
           resolve(msg);
         },
       );

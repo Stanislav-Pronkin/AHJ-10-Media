@@ -35,12 +35,12 @@ export default class Recorder {
     }
     try {
       const mediaContentType = recVideo ? 'video' : 'audio';
-      let mediaWasSaved = true;
+      let saveMedia = true;
       let recordingTime = 0;
       let timing = null;
 
       if (!window.MediaRecorder) {
-        const msg = 'Please, give permission in browser to record sound';
+        const msg = 'Запись звука невозможна.';
         alert(msg);
         return;
       }
@@ -69,7 +69,6 @@ export default class Recorder {
         timing = setInterval(() => {
           this.recTimer.innerText = this.timer(recordingTime += 1);
         }, 1000);
-        console.log('recording started...');
       });
 
       recorder.addEventListener('dataavailable', (evt) => {
@@ -78,21 +77,21 @@ export default class Recorder {
 
       recorder.addEventListener('stop', async () => {
         clearInterval(timing);
-        console.log('recording stopped');
         this.recTimer.innerText = '00:00';
-        if (mediaWasSaved) {
+
+        if (saveMedia) {
           const mediaElement = document.createElement(mediaContentType);
           const blob = new Blob(chunks, { type: `${mediaContentType}/mp4` });
-
           const fileReader = new FileReader();
-          fileReader.readAsDataURL(blob);
 
+          fileReader.readAsDataURL(blob);
           fileReader.onload = () => {
             mediaElement.src = fileReader.result;
             mediaElement.controls = true;
             this.messenger.createMessage(mediaElement.outerHTML);
           };
         }
+
         if (recVideo) {
           document.body.removeChild(document.querySelector('.video-preview'));
         }
@@ -103,16 +102,17 @@ export default class Recorder {
       this.stopRec.addEventListener('click', () => {
         recorder.stop();
         stream.getTracks().forEach((track) => track.stop());
-        mediaWasSaved = true;
+        saveMedia = true;
       });
 
       this.cancelRec.addEventListener('click', () => {
         recorder.stop();
         stream.getTracks().forEach((track) => track.stop());
-        mediaWasSaved = false;
+        saveMedia = false;
       });
     } catch (e) {
       const msg = 'Не удалось подключится к камере/микрофону';
+
       alert(msg);
       this.avButtons.classList.remove('hidden');
       this.cancelButtons.classList.add('hidden');
@@ -123,6 +123,6 @@ export default class Recorder {
   timer(seconds) {
     const min = Math.floor(seconds / 60);
     const sec = (seconds - (min * 60));
-    return `${min < 10 ? '0' + min : min}:${sec < 10 ? '0' + sec : sec}`; // eslint-disable-line prefer-template
+    return `${min < 10 ? `0${min}` : min}:${sec < 10 ? `0${sec}` : sec}`;
   }
 }
