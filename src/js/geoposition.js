@@ -1,6 +1,6 @@
 export default function getGeoposition() {
   let location = '';
-  
+
   if (navigator.geolocation) {
     return new Promise((resolve) => {
       navigator.geolocation.getCurrentPosition(
@@ -12,6 +12,7 @@ export default function getGeoposition() {
         }, (error) => {
           const msg = 'none';
 
+          console.log(error);
           resolve(msg);
         },
       );
